@@ -98,7 +98,9 @@ class _ProfiliDuzenleState extends State<ProfiliDuzenle> {
           onTap: _galeridenSec,
           child: CircleAvatar(
             backgroundColor: Colors.grey,
-            backgroundImage: _doThis(),
+            backgroundImage: _secilmisFoto == null
+                ? NetworkImage(widget.profil.fotoUrl)
+                : FileImage(_secilmisFoto),
             radius: 55,
           ),
         ),
