@@ -49,6 +49,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
         },
         controller: sayfaKumandasi,
         children: <Widget>[
+          Akis(),
           Ara(),
           Yukle(),
           Duyurular(),

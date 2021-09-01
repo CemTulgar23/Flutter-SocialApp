@@ -320,7 +320,7 @@ class _ProfilState extends State<Profil> {
   }
 
   _sosyalSayac({required String baslik, required int sayi}) {
-    Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       //kolon içindeki elemanları dikey olarak ortaladık
       crossAxisAlignment: CrossAxisAlignment.center,

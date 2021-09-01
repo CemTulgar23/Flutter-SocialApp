@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:socialapp/modeller/kullanici.dart';
+import 'package:socialapp/sayfalar/profil.dart';
 import 'package:socialapp/servisler/firestoreservisi.dart';
 import 'package:socialapp/servisler/storageservisi.dart';
 import 'package:socialapp/servisler/yetkilendirmeservisi.dart';
@@ -21,6 +22,13 @@ class _ProfiliDuzenleState extends State<ProfiliDuzenle> {
   late String _hakkinda;
   late i.File _secilmisFoto;
   bool _yukleniyor = false;
+  late ImageProvider _image;
+
+  @override
+  void initState() {
+    super.initState();
+    _image = _fotoDegistir();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,12 +98,20 @@ class _ProfiliDuzenleState extends State<ProfiliDuzenle> {
           onTap: _galeridenSec,
           child: CircleAvatar(
             backgroundColor: Colors.grey,
-            backgroundImage: _fotoDegistir(),
+            backgroundImage: _doThis(),
             radius: 55,
           ),
         ),
       ),
     );
+  }
+
+  ImageProvider _doThis() {
+    if (widget.profil.fotoUrl == null) {
+      return AssetImage("assets\images\profil.png");
+    } else {
+      return NetworkImage(widget.profil.fotoUrl);
+    }
   }
 
   _fotoDegistir() {
@@ -116,7 +132,6 @@ class _ProfiliDuzenleState extends State<ProfiliDuzenle> {
     setState(() {
       //setState diyerek build metodunu haberdar ediyoruz. Yani build metodunun tekrar çalışmasını sağlıyoruz
 
-      String b = "";
       _secilmisFoto = i.File(image.path);
       //image.path, string tipinde bir değişken iken onu File tipinde yaptık ve daha önceden oluşturduğumuz dosya değişkenine atadık
     });
